@@ -89,7 +89,7 @@ public class Identificator
             return null;
 
         // Same as for gatherables.
-        var itemNameLower = itemName;
+        var itemNameLower = itemName.ToLowerInvariant();
         foreach (var dict in _fishFromLanguage)
         {
             if (dict.TryGetValue(itemNameLower, out var item))

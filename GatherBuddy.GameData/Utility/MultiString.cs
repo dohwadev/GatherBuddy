@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using Dalamud;
 using Dalamud.Data;
 using Lumina.Text;
@@ -21,7 +20,7 @@ public readonly struct MultiString
         => Name(lang);
 
     public override string ToString()
-        => Name(ClientLanguage.Korean);
+        => Name(ClientLanguage.English);
 
     public string ToWholeString()
         => $"{English}|{German}|{French}|{Japanese}|{Korean}";
@@ -38,20 +37,20 @@ public readonly struct MultiString
 
     public static MultiString FromPlaceName(DataManager gameData, uint id)
     {
-        var en = string.Empty;
-        var de = string.Empty;
-        var fr = string.Empty;
-        var jp = string.Empty;
+        var en = ParseSeStringLumina(gameData.GetExcelSheet<Lumina.Excel.GeneratedSheets.PlaceName>(ClientLanguage.English)!.GetRow(id)?.Name);
+        var de = ParseSeStringLumina(gameData.GetExcelSheet<Lumina.Excel.GeneratedSheets.PlaceName>(ClientLanguage.German)!.GetRow(id)?.Name);
+        var fr = ParseSeStringLumina(gameData.GetExcelSheet<Lumina.Excel.GeneratedSheets.PlaceName>(ClientLanguage.French)!.GetRow(id)?.Name);
+        var jp = ParseSeStringLumina(gameData.GetExcelSheet<Lumina.Excel.GeneratedSheets.PlaceName>(ClientLanguage.Japanese)!.GetRow(id)?.Name);
         var ko = ParseSeStringLumina(gameData.GetExcelSheet<Lumina.Excel.GeneratedSheets.PlaceName>(ClientLanguage.Korean)!.GetRow(id)?.Name);
         return new MultiString(en, de, fr, jp, ko);
     }
 
     public static MultiString FromItem(DataManager gameData, uint id)
     {
-        var en = string.Empty;
-        var de = string.Empty;
-        var fr = string.Empty;
-        var jp = string.Empty;
+        var en = ParseSeStringLumina(gameData.GetExcelSheet<Lumina.Excel.GeneratedSheets.Item>(ClientLanguage.English)!.GetRow(id)?.Name);
+        var de = ParseSeStringLumina(gameData.GetExcelSheet<Lumina.Excel.GeneratedSheets.Item>(ClientLanguage.German)!.GetRow(id)?.Name);
+        var fr = ParseSeStringLumina(gameData.GetExcelSheet<Lumina.Excel.GeneratedSheets.Item>(ClientLanguage.French)!.GetRow(id)?.Name);
+        var jp = ParseSeStringLumina(gameData.GetExcelSheet<Lumina.Excel.GeneratedSheets.Item>(ClientLanguage.Japanese)!.GetRow(id)?.Name);
         var ko = ParseSeStringLumina(gameData.GetExcelSheet<Lumina.Excel.GeneratedSheets.Item>(ClientLanguage.Korean)!.GetRow(id)?.Name);
         return new MultiString(en, de, fr, jp, ko);
     }

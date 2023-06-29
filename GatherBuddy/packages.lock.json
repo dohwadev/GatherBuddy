@@ -1,7 +1,7 @@
 {
   "version": 1,
   "dependencies": {
-    "net6.0-windows7.0": {
+    "net7.0-windows7.0": {
       "Dalamud.ContextMenu": {
         "type": "Direct",
         "requested": "[1.2.1, )",

@@ -75,12 +75,12 @@ public partial class FishRecorder
     }
 
     private static readonly uint GatheringIdx =
-        Dalamud.GameData.GetExcelSheet<BaseParam>()?
+        Dalamud.GameData.GetExcelSheet<BaseParam>(ClientLanguage.English)?
             .FirstOrDefault(r => r.Name == "Gathering")?.RowId
      ?? 72;
 
     private static readonly uint PerceptionIdx =
-        Dalamud.GameData.GetExcelSheet<BaseParam>()?
+        Dalamud.GameData.GetExcelSheet<BaseParam>(ClientLanguage.English)?
             .FirstOrDefault(r => r.Name == "Perception")?.RowId
      ?? 73;
 
@@ -172,7 +172,7 @@ public partial class FishRecorder
         if (collectible)
             Record.Flags |= FishRecord.Effects.Collectible;
         GatherBuddy.Log.Verbose(
-            $"Caught {amount} {(large ? "large " : string.Empty)}{(collectible ? "collectible " : string.Empty)}{Record.Catch.Name[ClientLanguage.Korean]} of size {size / 10f:F1}.");
+            $"Caught {amount} {(large ? "large " : string.Empty)}{(collectible ? "collectible " : string.Empty)}{Record.Catch.Name[ClientLanguage.English]} of size {size / 10f:F1}.");
     }
 
     private void OnMooch()
@@ -213,6 +213,7 @@ public partial class FishRecorder
 
     private void OnFrameworkUpdate(Framework _)
     {
+        TimedSave();
         var state = GatherBuddy.EventFramework.FishingState;
         if (LastState == state)
             return;
