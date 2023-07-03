@@ -20,7 +20,7 @@ public readonly struct MultiString
         => Name(lang);
 
     public override string ToString()
-        => Name(ClientLanguage.English);
+        => Name(ClientLanguage.Korean);
 
     public string ToWholeString()
         => $"{English}|{German}|{French}|{Japanese}|{Korean}";
